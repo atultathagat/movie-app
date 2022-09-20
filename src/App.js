@@ -8,6 +8,8 @@ import Footer from './components/Footer/Footer';
 import './App.scss'
 import {Provider} from 'react-redux'
 import store from './redux/store';
+import Login from './components/Login/Login'
+import Protected from './components/Protected';
 
 function App() {
   return (
@@ -16,10 +18,11 @@ function App() {
       <Router>
         <Header></Header>
         <Switch>
-          <div className='container'>
-        <Route path='/' component={Home} exact></Route>
-        <Route path='/movie/:imdbID' component={MovieDetail} exact></Route>
-        <Route component={PageNotFound}></Route>
+          <div className='movieContainer'>
+        <Route path='/login' component={Login} exact></Route>
+        <Route path='/' exact><Protected cmp = {Home}/></Route>
+        <Route path='/movie/:imdbID' exact><Protected cmp = {MovieDetail}/></Route>
+        <Route><Protected cmp = {PageNotFound}/></Route>
         </div>
         </Switch>
         <Footer></Footer>

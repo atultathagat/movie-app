@@ -1,0 +1,30 @@
+@import "../../common/colors.scss";
+
+.movie-section{
+    display: flex;
+    color: $font-primary;
+    padding: 40px;
+    justify-content: space-around;
+}
+.movie-rating {
+    padding-left: 3px;
+    margin-top: 20px;
+    color: $font-secondary;
+    span{
+        margin-right: 20px;
+    }
+}
+.movie-plot {
+    margin-top: 20px;
+}
+.movie-info {
+div span:first-child {
+color: $font-primary;
+padding: 10px 0px;
+width: 100px;
+display: inline-block;
+}
+div span {
+    color: $font-secondary;
+}
+}

@@ -1,5 +1,4 @@
 
-   
 @import "../../common/colors.scss";
 .footer {
   background: $secondary-color;
@@ -9,4 +8,5 @@
   color: $font-primary;
   flex-direction: column;
   justify-content: center;
-}
+  width: 100%;
+ }

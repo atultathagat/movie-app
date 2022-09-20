@@ -1,0 +1,19 @@
+@import "../../common/colors.scss";
+.movie-wrapper{
+    padding: 10px;
+}
+.movie-list, .show-list {
+    margin: 20px 0px;
+    h2{
+        color: $font-secondary;
+        margin-bottom: 10px;
+        font-weight: 400;
+    }
+}
+
+.movie-container {
+    // TODO: learn about CSS Grid concepts
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 15px;
+}

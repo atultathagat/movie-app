@@ -1,16 +1,40 @@
-import React from 'react';
-import {Link} from 'react-router-dom'
-import user from '../../images/user.png'
-import './Header.scss'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {Link, useLocation} from 'react-router-dom'
+import logout from '../../images/logout.jpeg'
+import { makeParallelCallForMoviesAndShows } from '../../redux/actions/movieActions';
+import './Header.scss';
+
 const Header = () => {
-    return (
+    const {pathname} = useLocation();
+    const [term, setTerm] = useState('');
+    const dispatch = useDispatch();
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    const submitHandler = e => {
+e.preventDefault();
+dispatch(makeParallelCallForMoviesAndShows(term))
+setTerm('');
+    }
+
+const logoutUser = () => {
+localStorage.clear();
+};
+
+    return (pathname !== '/login' &&
         <div className='header'>
-            <Link to ='/'>
-                <div className='logo'>Movie App</div>
-            </Link>
-            <div className='user-img'>
-                <img src={user} alt = 'user'/>
-            </div>
+                <div className='logo'>   
+    <Link to ='/'>Movie App</Link></div>
+    {userDetails && userDetails.userType === 'user' && <div className='search-bar'>
+{!pathname.includes('/movie') && <form onSubmit={submitHandler}>
+    <input type="text" placeholder='Search movies or shows' value={term} onChange={e => setTerm(e.target.value)}/>
+    <button type="submit"><i className='fa fa-search'></i></button>
+</form>
+}    </div>}
+            {userDetails && <div className='user-img'>
+                {<div>Welcome {userDetails.name}</div>}
+                <Link to="/login">
+                <img src={logout} alt = 'logut' onClick={() => logoutUser()}/></Link>
+            </div>}
         </div>
     );
 };

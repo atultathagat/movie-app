@@ -1,19 +1,16 @@
-import React, { useEffect } from 'react';
-import { loadMovies } from '../../redux/actions/movieActions';
+import React from 'react';
+import AdminPanel from '../AdminPanel/AdminPanel';
 import MovieListing
  from '../MovieListing/MovieListing';
-import { useDispatch } from 'react-redux';
 
  const Home = () => {
-     const movieText = 'Harry';
-     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(loadMovies(movieText));
-    }, [])
+ 
+    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+ 
     return (
         <div>
             <div className='banner-img'></div>
-            <MovieListing/>
+            {userDetails.userType === 'user' ? <MovieListing/> : <AdminPanel/>}
         </div>
     );
 };
